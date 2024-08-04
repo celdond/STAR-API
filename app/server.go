@@ -19,12 +19,12 @@ type (
 
 func main() {
 	e := echo.New()
-	db, err := sql.Open("mysql", "root:<password>@tcp(127.0.0.1:3306)/test")
+	db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/test")
 	if err != nil {
 		panic(err.Error())
 	}
 	e.GET("/check", func(c echo.Context) error {
-		err := db.QueryRow("SELECT 1")
+		_, err := db.Query("SELECT 1")
 
 		if err != nil {
 			fmt.Println(err)
